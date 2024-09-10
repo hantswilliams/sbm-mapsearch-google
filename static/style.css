@@ -1,0 +1,11 @@
+body {
+    font-family: Arial, sans-serif;
+    text-align: center;
+}
+
+#map-container {
+    width: 80%;
+    height: 600px;
+    margin: 0 auto;
+    margin-top: 20px;
+}
