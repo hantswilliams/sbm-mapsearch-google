@@ -22,8 +22,8 @@ geolocator = GoogleV3(api_key=os.getenv('GOOGLE_MAPS_API_KEY'))
 sheet = client.open('Longislandfallsprevention_Locations').sheet1
 
 # Load map with default location and display nearby locations
-def create_map(default_location=[40.89, -72.7]):
-    m = folium.Map(location=default_location, zoom_start=8)
+def create_map(default_location=[40.7954, -73.1952]):
+    m = folium.Map(location=default_location, zoom_start=10)
     data = sheet.get_all_records()  # Fetch all data from the Google Sheet
 
     for idx, row in enumerate(data):
@@ -34,6 +34,7 @@ def create_map(default_location=[40.89, -72.7]):
         Address: {row['Address']}<br>
         Hours: {row['Hours']}<br>
         Contact: {row['Contact']}<br><br>
+        Dates: {row['Dates']}<br>
         """
         popup = folium.Popup(popup_html, max_width=300)
         folium.Marker(location, popup=popup, tooltip="Click for details").add_to(m)
@@ -76,11 +77,16 @@ def index():
             nearby_locations.sort(key=lambda x: x['Distance'])
         else:
             map_obj = create_map()  # Fallback if location not found
+
     else:
         map_obj = create_map()
+        nearby_locations = sheet.get_all_records()
+        search_location = 'None'
+
 
     map_html = map_obj._repr_html_()  # Convert map to HTML representation
-    return render_template('index.html', map=map_html, locations=nearby_locations)
+    return render_template(
+        'index.html', map=map_html, locations=nearby_locations, search_location=search_location)
 
 if __name__ == '__main__':
     app.run(debug=True, port=5005, host='0.0.0.0')

@@ -8,46 +8,71 @@
     </head>
     
     <body class="bg-gray-100">
-        <h1 class="text-3xl font-bold text-center mt-8">Map of Locations</h1>
+        <h1 class="text-4xl font-bold text-center mt-8">Map of Locations</h1>
     
         <!-- Search form -->
         <div class="flex justify-center mt-4">
             <form method="POST" class="flex space-x-2">
                 <input type="text" name="location" placeholder="Enter location or zipcode"
-                       class="border border-gray-300 rounded p-2 w-64" />
-                <button type="submit" class="bg-blue-500 text-white px-4 py-2 rounded">Search</button>
+                       class="border border-gray-300 rounded p-3 w-64 text-lg" />
+                <button type="submit" class="bg-blue-500 text-white px-4 py-2 rounded text-lg">Search</button>
             </form>
         </div>
     
-        <div class="container mx-auto mt-8 flex flex-col md:flex-row md:space-x-4">
-            <!-- Map Container -->
-            <div id="map-container" class="w-full md:w-2/3 h-96 md:h-auto bg-white shadow rounded-lg overflow-hidden">
+        <!-- Map and List stacked vertically -->
+        <div class="container mx-auto mt-8 flex flex-col space-y-8">
+            <!-- Map Container, should be 80% of the width -->
+            <div id="map-container" class="bg-white shadow rounded-lg overflow-hidden w-3/5 mx-auto h-96">
                 {{ map|safe }}
             </div>
     
             <!-- Locations Cards -->
-            <div id="locations-cards" class="w-full md:w-1/3 mt-8 md:mt-0">
-                <h2 class="text-xl font-semibold mb-4">Nearby Locations</h2>
+            <div id="locations-cards" class="w-3/5 mx-auto">
+                <h2 class="text-2xl font-semibold mb-4">Nearby Locations</h2>
                 <div class="space-y-4">
                     {% if locations %}
                         {% for loc in locations %}
                             <!-- Location Card -->
-                            <div class="bg-white p-4 rounded-lg shadow">
-                                <h3 class="text-lg font-semibold">{{ loc['Location Name'] }}</h3>
-                                <p class="text-sm text-gray-500">Category: {{ loc['Category'] }}</p>
-                                <p class="text-sm text-gray-500">Address: {{ loc['Address'] }}</p>
-                                <p class="text-sm text-gray-500">Hours: {{ loc['Hours'] }}</p>
-                                <p class="text-sm text-gray-500">Contact: {{ loc['Contact'] }}</p>
-                                <p class="text-sm text-gray-500">Distance: {{ loc['Distance']|round(2) }} miles</p>
+                            <div class="bg-white p-5 rounded-lg shadow border border-gray-200">
+
+                                <h3 class="text-2xl font-semibold bg-red-800 text-white p-3 rounded-lg">
+                                    {{ loc['Location Name'] }}
+                                    {% if loc.get('Distance') %}
+                                    <div class="border-t border-white-200 mt-2 pt-2">
+                                        <p class="text-xl text-white-500"><strong>Distance from: {{ search_location }}:</strong> {{ loc['Distance']|round(2) }} miles</p>
+                                    </div>
+                                    {% endif %}
+                                </h3>
+
+                                <!-- Faint line separator for each field -->
+                                <div class="border-t border-gray-200 mt-3 pt-3">
+                                    <p class="text-xl text-gray-700"><strong>Category:</strong> {{ loc['Category']|upper }}</p> <!-- Capitalize Category -->
+                                </div>
+                            
+                                <div class="border-t border-gray-200 mt-3 pt-3">
+                                    <p class="text-xl text-gray-700"><strong>Address:</strong> {{ loc['Address'] }}</p>
+                                </div>
+                            
+                                <div class="border-t border-gray-200 mt-3 pt-3">
+                                    <p class="text-xl text-gray-700"><strong>Hours:</strong> {{ loc['Hours'] }}</p>
+                                </div>
+                            
+                                <div class="border-t border-gray-200 mt-3 pt-3">
+                                    <p class="text-xl text-gray-700"><strong>Dates:</strong> {{ loc['Dates'] }}</p>
+                                </div>
+                            
+                                <div class="border-t border-gray-200 mt-3 pt-3">
+                                    <p class="text-xl text-gray-700"><strong>Contact:</strong> {{ loc['Contact'] }}</p>
+                                </div>
+                        
                             </div>
+                            
                         {% endfor %}
                     {% else %}
-                        <p class="text-gray-500">No nearby locations found.</p>
+                        <p class="text-lg text-gray-700">No nearby locations found.</p>
                     {% endif %}
                 </div>
             </div>
         </div>
     </body>
-
-
 </html>
