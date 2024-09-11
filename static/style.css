@@ -3,9 +3,35 @@ body {
     text-align: center;
 }
 
-#map-container {
-    width: 80%;
-    height: 600px;
-    margin: 0 auto;
+#content {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
     margin-top: 20px;
+}
+
+#map-container {
+    width: 60%;
+    height: 600px;
+    margin-right: 20px;
+}
+
+#locations-table {
+    width: 35%;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 10px;
+}
+
+table, th, td {
+    border: 1px solid #ccc;
+    padding: 8px;
+    text-align: left;
+}
+
+th {
+    background-color: #f2f2f2;
 }
