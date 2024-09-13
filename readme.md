@@ -34,3 +34,5 @@ python app.py
 ```json
   "client_email": "googlesheets-access@stony-brook-projects.iam.gserviceaccount.com",
 ```
+
+- The current google sheet link is under hantsawilliams@gmail.com, and here is the link <a href="https://docs.google.com/spreadsheets/d/1IQe_EHFO-LmR89WRVZDaTHfR4ybwL0DukCT4m3iN8Dk/edit?gid=0#gid=0 target=_blank">here</a>

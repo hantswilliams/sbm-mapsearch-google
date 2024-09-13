@@ -31,10 +31,6 @@ def create_map(default_location=[40.7954, -73.1952]):
         popup_html = f"""
         <b>{row['Location Name']}</b><br>
         Category: {row['Category']}<br>
-        Address: {row['Address']}<br>
-        Hours: {row['Hours']}<br>
-        Contact: {row['Contact']}<br><br>
-        Dates: {row['Dates']}<br>
         """
         popup = folium.Popup(popup_html, max_width=300)
         folium.Marker(location, popup=popup, tooltip="Click for details").add_to(m)

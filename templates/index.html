@@ -5,6 +5,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Falls Prevention - Resources Map</title>
         <script src="https://cdn.tailwindcss.com"></script>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
     </head>
     
     <body class="bg-white">
@@ -21,7 +22,6 @@
     
         <!-- Map and List stacked vertically -->
         <div class="container mx-auto mt-8 flex flex-col space-y-8">
-            <!-- Map Container, should be 80% of the width -->
             <div id="map-container" class="bg-white shadow rounded-lg overflow-hidden w-3/5 mx-auto h-96">
                 {{ map|safe }}
             </div>
@@ -44,24 +44,33 @@
                                     {% endif %}
                                 </h3>
 
+                                <div class="border-t border-gray-200 mt-3 pt-3 flex items-center">
+                                    <p class="text-xl text-gray-700"><strong>Details:</strong> {{ loc['Details'] }}</p>
+                                </div>  
+
                                 <!-- Faint line separator for each field -->
-                                <div class="border-t border-gray-200 mt-3 pt-3">
+                                <div class="border-t border-gray-200 mt-3 pt-3 flex items-center">
+                                    <i class="fas fa-tag text-red-500 mr-2"></i>
                                     <p class="text-xl text-gray-700"><strong>Category:</strong> {{ loc['Category']|upper }}</p> <!-- Capitalize Category -->
                                 </div>
                             
-                                <div class="border-t border-gray-200 mt-3 pt-3">
-                                    <p class="text-xl text-gray-700"><strong>Address:</strong> {{ loc['Address'] }}</p>
+                                <div class="border-t border-gray-200 mt-3 pt-3 flex items-center">
+                                    <i class="fas fa-map-marker-alt text-red-500 mr-2"></i>
+                                    <p class="text-lg text-gray-700"><strong>Address:</strong> {{ loc['Address'] }}</p>
                                 </div>
                             
-                                <div class="border-t border-gray-200 mt-3 pt-3">
+                                <div class="border-t border-gray-200 mt-3 pt-3 flex items-center">
+                                    <i class="fas fa-phone text-red-500 mr-2"></i>
                                     <p class="text-xl text-gray-700"><strong>Hours:</strong> {{ loc['Hours'] }}</p>
                                 </div>
                             
-                                <div class="border-t border-gray-200 mt-3 pt-3">
+                                <div class="border-t border-gray-200 mt-3 pt-3 flex items-center">
+                                    <i class="fas fa-calendar-alt text-red-500 mr-2"></i>
                                     <p class="text-xl text-gray-700"><strong>Dates:</strong> {{ loc['Dates'] }}</p>
                                 </div>
                             
-                                <div class="border-t border-gray-200 mt-3 pt-3">
+                                <div class="border-t border-gray-200 mt-3 pt-3 flex items-center">
+                                    <i class="fas fa-phone text-red-500 mr-2"></i>
                                     <p class="text-xl text-gray-700"><strong>Contact:</strong> {{ loc['Contact'] }}</p>
                                 </div>
                         
@@ -69,7 +78,10 @@
                             
                         {% endfor %}
                     {% else %}
-                        <p class="text-lg text-gray-700">No nearby locations found.</p>
+                        <!-- No locations found -->
+                         <div class="bg-white p-5 rounded-lg shadow border border-gray-200">
+                            <h3 class="text-2xl font-semibold bg-red-800 text-white p-3 rounded-lg">No nearby locations found.</h3>
+                        </div>
                     {% endif %}
                 </div>
             </div>
