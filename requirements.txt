@@ -1,6 +1,0 @@
-Flask
-folium
-gspread
-oauth2client
-geopy
-python-dotenv

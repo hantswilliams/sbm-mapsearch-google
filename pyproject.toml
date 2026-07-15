@@ -1,0 +1,16 @@
+[project]
+name = "sbm-mapsearch-google"
+version = "0.1.0"
+description = "Falls Prevention Resources Map — Flask app that reads locations from Google Sheets and renders them on a Folium/Leaflet map with distance-based search."
+requires-python = ">=3.14"
+dependencies = [
+    "flask",
+    "folium",
+    "gspread",
+    "oauth2client",
+    "geopy",
+    "python-dotenv",
+]
+
+[tool.uv]
+package = false

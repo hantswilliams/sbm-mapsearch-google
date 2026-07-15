@@ -13,7 +13,8 @@ app = Flask(__name__)
 
 # Google Sheets Setup
 scope = ['https://spreadsheets.google.com/feeds', 'https://www.googleapis.com/auth/drive']
-creds = ServiceAccountCredentials.from_json_keyfile_name('stony-brook-projects-1277d6088e55.json', scope)
+creds_path = os.getenv('GOOGLE_SERVICE_ACCOUNT_FILE', 'service-account.json')
+creds = ServiceAccountCredentials.from_json_keyfile_name(creds_path, scope)
 client = gspread.authorize(creds)
 
 # Google Geocoding API Key

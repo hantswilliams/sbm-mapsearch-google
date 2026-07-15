@@ -1,0 +1,23 @@
+# Credentials — must never land in the image
+.env
+.env.*
+!.env.template
+service-account.json
+stony-brook*.json
+sbm-maps*.json
+
+# Local dev artifacts
+.venv
+.git
+.gitignore
+.vscode
+__pycache__
+*.pyc
+*.pyo
+
+# Docs aren't needed at runtime
+docs/
+readme.md
+deployment.md
+Dockerfile
+.dockerignore
